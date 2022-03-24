@@ -32,9 +32,11 @@ tap.test('Metric buckets', async (t) => {
   metrics.aggregate(true);
   metrics.stop();
 
+  const packedMetrics = SSMS.pack(intermediates);
+
   // compare
   t.match(
-    intermediates[0].counters,
+    packedMetrics.counters,
     expectedCounters,
     'should have the expected counters'
   );
